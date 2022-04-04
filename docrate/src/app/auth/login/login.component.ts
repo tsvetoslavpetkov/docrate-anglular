@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AboutComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public constructor(private titleService: Title) { }
 
@@ -16,7 +16,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setTitle("DocRate | За Нас")
+    this.setTitle("DocRate | Вход")
   }
 
 }
