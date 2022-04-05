@@ -10,3 +10,9 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.main-card-container {
+    width: 900px;
+    margin: auto;
+    padding-top: 100px;
+}

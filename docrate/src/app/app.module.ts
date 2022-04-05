@@ -9,9 +9,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
