@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingComponent } from 'src/app/shared/loading/loading.component';
 import { DoctorService, IDoctor } from '../doctor.service';
 
 @Component({
@@ -14,8 +16,13 @@ export class DoctorprofileComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private titleService: Title,
   ) {}
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
 
   ngOnInit(): void {
 
@@ -28,6 +35,7 @@ export class DoctorprofileComponent implements OnInit {
         next: doctor => {
         this.isLoading = false;
         this.doctor = doctor;
+        this.setTitle("DocRate | " + doctor.title + " " + doctor.firstName + " " + doctor.secondName)
         },
         error: error => {
           this.isLoading = false;

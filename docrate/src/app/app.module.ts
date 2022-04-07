@@ -12,10 +12,12 @@ import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DoctorModule } from './doctor/doctor.module';
+import { CreateComponent } from './pages/create/create.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent, CreateComponent, EditComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

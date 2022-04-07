@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CreateDoctorComponent } from './doctor/create-doctor/create-doctor.component';
 import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
+import { EditComponent } from './doctor/edit/edit.component';
 import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
+import { ContactComponent } from './pages/contact/contact.component'
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
@@ -34,9 +36,17 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'edit/:id',
+    component: EditComponent
+  },
+  {
+    path: 'create',
+    component: CreateDoctorComponent
+  },
+  {
     path: ':id',
     component: DoctorprofileComponent
-  },
+  },  
   {
     path: '**',
     component: NotFoundComponent,

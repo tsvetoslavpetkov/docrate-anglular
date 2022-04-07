@@ -3,20 +3,30 @@ import { CommonModule } from '@angular/common';
 import { DoctorlistComponent } from './doctorlist/doctorlist.component';
 import { RouterModule } from '@angular/router';
 import { DoctorprofileComponent } from './doctorprofile/doctorprofile.component';
+import { SharedModule } from '../shared/shared.module';
+import { CreateDoctorComponent } from './create-doctor/create-doctor.component';
+import { Title } from '@angular/platform-browser';
+import { EditComponent } from './edit/edit.component';
 
 
 
 @NgModule({
   declarations: [
     DoctorlistComponent,
-    DoctorprofileComponent
+    DoctorprofileComponent,
+    CreateDoctorComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
-    DoctorlistComponent
-  ]
+    DoctorlistComponent,
+    CreateDoctorComponent
+  ], providers: [
+    Title
+  ],
 })
 export class DoctorModule { }

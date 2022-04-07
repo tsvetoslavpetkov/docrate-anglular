@@ -8,11 +8,11 @@
                 <div class="info">
                     <h5>{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
                     <hr>
-                    <p>Специалност: <b>{{doctor.specialityName}}</b></p>
-                    <p>Код специалност: <b>{{doctor.specialityCode}}</b></p>
-                    <p>Работи по здравна каса: <b>{{doctor.nzok ? "Да" : "Не"}}</b></p>
-                    <p>Цена на преглед: <b>{{doctor.price}} лв.</b></p>
-                    <p>Адрес: <b>{{doctor.address}}</b></p>
+                    <p><i class="fa-solid fa-tag"></i>  Специалност: <b>{{doctor.specialityName}}</b></p>
+                    <p><i class="fa-solid fa-hashtag"></i> Код специалност: <b>{{doctor.specialityCode}}</b></p>
+                    <p><i class="fa-solid fa-house-medical"></i> Работи по здравна каса: <b>{{doctor.nzok ? "Да" : "Не"}}</b></p>
+                    <p><i class="fa-solid fa-money-bill-1"></i> Цена на преглед: <b>{{doctor.price}} лв.</b></p>
+                    <p><i class="fa-solid fa-location-dot"></i> Адрес: <b>{{doctor.address}}</b></p>
                     <hr>
                 </div>
             </div>
@@ -22,29 +22,9 @@
 </div>
 
 <ng-template #loadingIndicator>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        style="margin: auto; background: rgba(241, 242, 243, 0); display: block;" width="200px" height="200px"
-        viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-        <g transform="translate(0 -7.5)">
-            <circle cx="50" cy="41" r="10" fill="#182731">
-                <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite"
-                    keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
-                <animate attributeName="r" dur="1s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1"
-                    values="0;15;0" keySplines="0.2 0 0.8 1;0.2 0 0.8 1"></animate>
-            </circle>
-            <circle cx="50" cy="41" r="10" fill="#a7d4ec">
-                <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite"
-                    keyTimes="0;1" values="180 50 50;540 50 50"></animateTransform>
-                <animate attributeName="r" dur="1s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1"
-                    values="15;0;15" keySplines="0.2 0 0.8 1;0.2 0 0.8 1"></animate>
-            </circle>
-        </g>
-    </svg>
+    <app-loading></app-loading>
 </ng-template>
 
 <ng-template #errorIndicator>
-    <div class="error-doctor" style="display: flex; align-items: center; gap: 2rem; color: rgb(255, 255, 255); font-size: 2rem; text-shadow: 0 0 3px black;">
-    <img src="/assets/179386.png" width="200" alt="ERROR"/>
-    <p>ГРЕШКА! Търсеният лекар не съществува. Проверете линка или се върнете на началната страница.</p>
-    </div>
+ <app-resource-error></app-resource-error>
 </ng-template>
