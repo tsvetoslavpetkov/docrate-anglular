@@ -1,0 +1,26 @@
+.doctorListGrid{
+    display: grid;
+    max-width: 100%;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.doctorCard{
+    transition: 0.3s;
+    text-align: center;
+    height: 470px;
+    padding: 1px;
+}
+.doctorCard:hover{
+    transform: scale(1.02)
+}
+
+.doctorCard>img{
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.error-doctor{
+    color: red;
+}

@@ -1,0 +1,15 @@
+.content{
+    display: flex;
+    gap: 2rem
+}
+
+.info{
+    padding: 1rem;
+    color: rgb(66, 66, 66)
+}
+
+.content img {
+    max-width: 350px;
+    border:1px solid gainsboro;
+    border-radius: 3px;
+}

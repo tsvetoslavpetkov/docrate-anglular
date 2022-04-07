@@ -16,3 +16,7 @@
     margin: auto;
     padding-top: 100px;
 }
+
+.card {
+    box-shadow: 3px 3px 5px black;
+}
