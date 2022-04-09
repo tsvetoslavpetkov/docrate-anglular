@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateDoctorComponent } from './create-doctor/create-doctor.component';
 import { Title } from '@angular/platform-browser';
 import { EditComponent } from './edit/edit.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports: [
     DoctorlistComponent,

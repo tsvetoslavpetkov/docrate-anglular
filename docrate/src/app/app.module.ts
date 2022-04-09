@@ -14,6 +14,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { DoctorModule } from './doctor/doctor.module';
 import { CreateComponent } from './pages/create/create.component';
 import { EditComponent } from './pages/edit/edit.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EditComponent } from './pages/edit/edit.component';
     CoreModule,
     AuthModule,
     HttpClientModule,
-    DoctorModule
+    DoctorModule,
+    FormsModule
   ],
   providers: [
     Title

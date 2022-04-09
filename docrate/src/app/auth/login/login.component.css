@@ -1,0 +1,10 @@
+.card-body {
+    background-image: url('/assets/login-animation.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 400px;
+}
+
+a {
+    text-decoration: none;
+}
