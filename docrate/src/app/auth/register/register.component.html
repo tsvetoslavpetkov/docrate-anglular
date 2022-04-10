@@ -1,1 +1,40 @@
-<p>register works!</p>
+<div class="card mb-4 box-shadow">
+    <div class="card-header" style="text-align: center;">
+        <h6 class="my-1">Регистрация</h6>
+    </div>
+    <div class="card-body">
+        <div style="padding: 1rem; width: 60%;">
+            <form #registerForm="ngForm" (ngSubmit)=onSubmit()>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input
+                        type="email" class="form-control" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter email" ngModel #myfieldname="ngModel" required="true"
+                        [ngClass]="{'is-valid': myfieldname.touched && myfieldname.valid, 'is-invalid': myfieldname.touched && myfieldname.invalid}"
+                        >
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control"
+                     placeholder="Password" ngModel #myfieldname1="ngModel" required="true"
+                     [ngClass]="{'is-valid': myfieldname1.touched && myfieldname1.valid, 'is-invalid': myfieldname1.touched && myfieldname1.invalid}"
+                     >
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password Repeat</label>
+                    <input type="password" name="passwordRepeat" class="form-control"
+                     placeholder="passwordRepeat" ngModel #myfieldname2="ngModel" required="true"
+                     [ngClass]="{'is-valid': myfieldname2.touched && myfieldname2.valid, 'is-invalid': myfieldname2.touched && myfieldname2.invalid}"
+                     >
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="card-footer" style="text-align: center;">
+        
+    </div>
+</div>

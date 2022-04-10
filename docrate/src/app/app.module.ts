@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,7 @@ import { DoctorModule } from './doctor/doctor.module';
 import { CreateComponent } from './pages/create/create.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -30,7 +31,15 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    Title
+    Title,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (AuthService: AuthService) => {
+        return () => AuthService.authenticate();
+      },
+      deps: [AuthService],
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
 })

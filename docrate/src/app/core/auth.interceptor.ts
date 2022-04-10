@@ -23,8 +23,9 @@ export class AuthInterceptor implements HttpInterceptor {
       if(event instanceof HttpResponse){
         if (event.url?.endsWith('login') || event.url?.endsWith('register')){          
           const newlyLoggedUser: any = event.body;
-          const token = newlyLoggedUser.accessToken;
-          localStorage.setItem("auth_token", token)
+          localStorage.setItem('accessToken', newlyLoggedUser.accessToken);
+          localStorage.setItem('_id', newlyLoggedUser.accessToken), 
+          localStorage.setItem('email', newlyLoggedUser.email), 
           this.authService.handleLogin(newlyLoggedUser);
         }else if (event.url?.endsWith('logout')){
           this.authService.handleLogin(undefined!);

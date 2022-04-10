@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
 import { ResourceErrorComponent } from './resource-error/resource-error.component';
 import { RouterModule } from '@angular/router';
+import { NotificationComponent } from './notification/notification.component';
 
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
-    ResourceErrorComponent
+    ResourceErrorComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     LoadingComponent,
-    ResourceErrorComponent
+    ResourceErrorComponent,
+    NotificationComponent
   ]
 })
 export class SharedModule { }

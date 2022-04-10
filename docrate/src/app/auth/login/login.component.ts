@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MessageService, MessageType } from 'src/app/core/message.service';
 
 @Component({
   selector: 'app-login',
@@ -10,19 +11,16 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  @ViewChild('loginForm') laptopForm!: NgForm;
+  @ViewChild('loginForm') loginForm!: NgForm;
 
   public constructor(
     private titleService: Title,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router,
+    private messageService: MessageService) {}
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
-  }
-
-  loginHandler(email: string, password: string) {
-    console.log(email, password);
   }
 
   ngOnInit(): void {
@@ -30,18 +28,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.laptopForm.value);
   }
-
   
-  onSubmit(): void {
-    
-    this.authService.login$(this.laptopForm.value).subscribe({
+  onSubmit(): void {    
+    this.authService.login$(this.loginForm.value).subscribe({
       next: () => {
+        this.messageService.notifyMessage({
+          text: 'Успешен вход!',
+          type: MessageType.Success
+        })
         this.router.navigate(['/home']);
       },
       complete: () => {
-        console.log('login stream completed');
       },
       error: () => {
        //TODO

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthGuard } from './core/auth.guard';
+import { GuestGuard } from './core/guest.guard';
 import { CreateDoctorComponent } from './doctor/create-doctor/create-doctor.component';
 import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
 import { EditComponent } from './doctor/edit/edit.component';
@@ -29,18 +31,22 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [GuestGuard],
     component: LoginComponent,
   },
   {
     path: 'register',
+    canActivate: [GuestGuard],
     component: RegisterComponent,
   },
   {
     path: 'edit/:id',
+    canActivate: [AuthGuard],
     component: EditComponent
   },
   {
     path: 'create',
+    canActivate: [AuthGuard],
     component: CreateDoctorComponent
   },
   {

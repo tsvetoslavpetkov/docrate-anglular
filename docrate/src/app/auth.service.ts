@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 
 export interface IUser {
   email: string;
+  _id: string;
+  accessToken: string
 }
 
 @Injectable({
@@ -26,23 +28,37 @@ export class AuthService {
     .post<IUser>('https://practice-server-softuni.herokuapp.com/users/login', userData, {observe: 'response'})
     .pipe(
       map(res => res.body)
-    )
-    
+    )    
   }
 
-  // register$(userData): Observable<IUser>{
-  //   return this.httpClient.post<IUser>('https://practice-server-softuni.herokuapp.com/auth/register', userData)
-  // }
+  register$(userData: {email: string, password: string}): Observable<IUser>{
+    return this.httpClient.post<IUser>('https://practice-server-softuni.herokuapp.com/users/register', userData)
+  }
 
   logout$(): Observable<Object> {
-    let token = localStorage.getItem('auth_token');
+    let token = localStorage.getItem('accessToken');
     return this.httpClient.get('https://practice-server-softuni.herokuapp.com/users/logout', { headers: {
       'X-Authorization' : token!
     }})
   }
 
-  handleLogin (newUser: IUser){
-    this._currentUser.next(newUser)
+  authenticate(){
+    if(localStorage.getItem('accessToken')){
+      let user = {
+        '_id' : localStorage.getItem('_id'),
+        'email' : localStorage.getItem('email'),
+        'accessToken' : localStorage.getItem('accessToken')
+        
+      } 
+      this.handleLogin(user);
+    }
 
   }
+
+  handleLogin (newUser : any){    
+    this._currentUser.next(newUser)
+  }
+
+  
+
 }

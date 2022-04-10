@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
 import { AuthInterceptor } from './auth.interceptor';
+import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -22,6 +23,12 @@ import { AuthInterceptor } from './auth.interceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+    },
+    
   ],
 })
 export class CoreModule {}
