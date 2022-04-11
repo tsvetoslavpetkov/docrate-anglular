@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MessageService, MessageType } from 'src/app/core/message.service';
 import { DoctorService } from '../doctor.service';
@@ -16,11 +17,16 @@ export class CreateDoctorComponent implements OnInit {
   constructor(
     private doctorService: DoctorService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private titleService: Title
   ) { }
 
-  ngOnInit(): void {
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
 
+  ngOnInit(): void {
+    this.setTitle("DocRate | Добавяне на лекар")
   }
 
   onSubmit(): void {
