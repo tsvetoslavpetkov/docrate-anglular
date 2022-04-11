@@ -14,6 +14,14 @@
                     <p><i class="fa-solid fa-money-bill-1"></i> Цена на преглед: <b>{{doctor.price}} лв.</b></p>
                     <p><i class="fa-solid fa-location-dot"></i> Адрес: <b>{{doctor.address}}</b></p>
                     <hr>
+                    <p><i class="fa-solid fa-thumbs-up"></i> Харесвания: <b>{{ likes }}</b>
+                        <button *ngIf="!isOwner && (isLoggedIn$ | async) && !hasLiked" (click)=likeHandle() style="margin-left: 100px" type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-thumbs-up"></i> Харесай</button> </p> 
+                    <hr>
+                    <div *ngIf="isOwner">
+                    <a routerLink="/edit/{{doctor._id}}"><button type="button" class="btn btn-outline-secondary">Редактирай</button></a>
+                    <button style="margin-left: 10px;" type="button" class="btn btn-outline-danger">Изтрий</button>
+                    </div>
+
                 </div>
             </div>
         </div>

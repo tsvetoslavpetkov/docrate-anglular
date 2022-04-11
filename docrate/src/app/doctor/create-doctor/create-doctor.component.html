@@ -1,65 +1,124 @@
 <div class="card" >
     <div class="card-header" style="text-align: center;"><h4>Създаване на лекар</h4></div>
     <div class="card-body">
-        <form>
+        <form #createForm="ngForm" (ngSubmit)=onSubmit()>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationServer01">Пък към снимка</label>
-                    <input type="text" class="form-control" id="validationServer01"placeholder="https://" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="imageUrl">URL към снимка</label>
+                    <input
+                     name="imageUrl"
+                     type="text"
+                     class="form-control"
+                     placeholder="https://"
+                     required
+                     ngModel
+                     #imageUrl = "ngModel"
+                     [ngClass]="{'is-valid': imageUrl.touched && imageUrl.valid, 'is-invalid': imageUrl.touched && imageUrl.invalid}"
+                    >
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationServer01">Титла</label>
-                    <input type="text" class="form-control" id="validationServer01" placeholder="доц" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="title">Титла</label>
+                    <select
+                     name="title"
+                     class="form-control"
+                     ngModel
+                     #title = "ngModel"
+                     [ngClass]="{'is-valid': title.touched && title.valid, 'is-invalid': title.touched && title.invalid}"
+                    >
+                    <option value="д-р">д-р</option>
+                    <option value="Доц.">Доц.</option>
+                    <option value="Проф.">Проф.</option>
+                    <option value=""> - </option>
+                     </select>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="validationServer02">Първо име</label>
-                    <input type="text" class="form-control" id="validationServer02" placeholder="Рада" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="firstName">Първо име</label>
+                    <input
+                     name="firstName"
+                     type="text"
+                     class="form-control"
+                     placeholder="Рада"
+                     required
+                     ngModel
+                     #firstName = "ngModel"
+                     [ngClass]="{'is-valid': firstName.touched && firstName.valid, 'is-invalid': firstName.touched && firstName.invalid}"
+                    >
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="validationServer02">Второ име</label>
-                    <input type="text" class="form-control" id="validationServer02" placeholder="Маркова" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="secondName">Второ име</label>
+                    <input
+                     name="secondName"
+                     type="text"
+                     class="form-control"
+                     placeholder="Маркова"
+                     required
+                     ngModel
+                     #secondName = "ngModel"
+                     [ngClass]="{'is-valid': secondName.touched && secondName.valid, 'is-invalid': secondName.touched && secondName.invalid}"
+                    >
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationServer01">Специалност</label>
-                    <input type="text" class="form-control" id="validationServer01" placeholder="00 Общо практикуващ лекар" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="speciality">Специалност</label>
+                    <select
+                     required
+                     name="speciality"
+                     class="form-control"
+                     ngModel
+                     #speciality = "ngModel"
+                     [ngClass]="{'is-valid': speciality.touched && speciality.valid, 'is-invalid': speciality.touched && speciality.invalid}"
+                    >
+                    <option value="00 Общопрактикуващ лекар">00 Общопрактикуващ лекар</option>
+                    <option value="01 Акушерство и гинекология">01 Акушерство и гинекология</option>
+                    <option value="04 Кожни и венерически болести">04 Кожни и венерически болести</option>
+                    <option value="08 Кардиология">08 Кардиология</option>
+                    <option value="11 Нефрология">11 Нефрология</option>
+                    <option value="14 Ушно-носно-гърлени болести">14 Ушно-носно-гърлени болести</option>
+                    <option value="15 Очни болести">15 Очни болести</option>
+                    </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-8 mb-3">
-                    <label for="validationServer01">Цена на прегледа</label>
-                    <input type="text" class="form-control" id="validationServer01" placeholder="бул. България 51" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="price">Второ име</label>
+                    <input
+                     name="price"
+                     type="text"
+                     class="form-control"
+                     placeholder="40лв."
+                     required
+                     ngModel
+                     #price = "ngModel"
+                     [ngClass]="{'is-valid': price.touched && price.valid, 'is-invalid': price.touched && price.invalid}"
+                    >
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationServer01">Специалност</label>
-                    <input type="text" class="form-control" id="validationServer01" placeholder="00 Общо практикуващ лекар" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                <div class="pt-4">
+                    <label class="form-check-label" style="margin-left: 40px;" for="nzok">Здравна каса</label>
+                    <input type="checkbox" style="margin-left: 20px;" ngModel #nzok = "ngModel" name="nzok" class="form-check-input" [ngClass]="{'is-valid': nzok.touched && nzok.valid, 'is-invalid': nzok.touched && nzok.invalid}">
+                    
+                  </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label for="address">Адрес на практиката</label>
+                    <input
+                     name="address"
+                     type="text"
+                     class="form-control"
+                     placeholder="Бул. България 51А, гр.София"
+                     required
+                     ngModel
+                     #address = "ngModel"
+                     [ngClass]="{'is-valid': address.touched && address.valid, 'is-invalid': address.touched && address.invalid}"
+                    >
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <div style="width: 100%;">
+            <button  class="btn btn-primary" style="position: relative; left:50%; transform: translateX(-50%)"  type="submit">Добави лекар</button>
+            </div>
         </form>
 
     </div>

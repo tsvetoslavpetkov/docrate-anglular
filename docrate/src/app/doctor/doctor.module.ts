@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     DoctorlistComponent,
     DoctorprofileComponent,
     CreateDoctorComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,

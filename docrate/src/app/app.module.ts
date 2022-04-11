@@ -16,10 +16,12 @@ import { CreateComponent } from './pages/create/create.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent, CreateComponent, EditComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent, CreateComponent, EditComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,7 +30,8 @@ import { AuthService } from './auth.service';
     AuthModule,
     HttpClientModule,
     DoctorModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     Title,

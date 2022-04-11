@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       complete: () => {
-        console.log('login stream completed');
       },
       error: () => {
        //TODO

@@ -18,10 +18,14 @@ export class AuthService {
     private httpClient: HttpClient
   ) { }
 
+  public userId: string = '';
+  public accessToken: string = '';
   private _currentUser = new BehaviorSubject<IUser>(undefined!);
 
   currentUser$ = this._currentUser.asObservable()
   isLoggedIn$ = this.currentUser$.pipe(map(user => !!user))
+  userId$ = this.currentUser$.pipe(map(user => user._id))
+  accessToken$ = this.currentUser$.pipe(map(user => user.accessToken))
 
   login$(userData: {email: string, password: string}): any {
     return this.httpClient
@@ -35,11 +39,8 @@ export class AuthService {
     return this.httpClient.post<IUser>('https://practice-server-softuni.herokuapp.com/users/register', userData)
   }
 
-  logout$(): Observable<Object> {
-    let token = localStorage.getItem('accessToken');
-    return this.httpClient.get('https://practice-server-softuni.herokuapp.com/users/logout', { headers: {
-      'X-Authorization' : token!
-    }})
+  logout$(): Observable<any> {
+    return this.httpClient.get('https://practice-server-softuni.herokuapp.com/users/logout')
   }
 
   authenticate(){
@@ -47,16 +48,17 @@ export class AuthService {
       let user = {
         '_id' : localStorage.getItem('_id'),
         'email' : localStorage.getItem('email'),
-        'accessToken' : localStorage.getItem('accessToken')
-        
+        'accessToken' : localStorage.getItem('accessToken')        
       } 
       this.handleLogin(user);
     }
 
   }
 
-  handleLogin (newUser : any){    
-    this._currentUser.next(newUser)
+  handleLogin (newUser : any){
+    this._currentUser.next(newUser)    
+    this.userId = newUser._id;  
+    this.accessToken = newUser.accessToken
   }
 
   

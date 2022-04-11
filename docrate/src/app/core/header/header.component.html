@@ -43,9 +43,8 @@
       </span>
     </div>
   </div>
-
-  
+    
   <div *ngIf="message" [ngClass]="{'error-message alert-danger': isError, 'success-message alert-success' : !isError}" class="alert notification" role="alert">
-    <i *ngIf="!isError" class="fa-solid fa-circle-check"></i> <i *ngIf="isError" class="fa-solid fa-triangle-exclamation"></i> {{message}}
+    <i *ngIf="!isError" class="fa-solid fa-circle-check"></i><i *ngIf="isError" class="fa-solid fa-triangle-exclamation"></i> {{message}}
   </div>
 </nav>

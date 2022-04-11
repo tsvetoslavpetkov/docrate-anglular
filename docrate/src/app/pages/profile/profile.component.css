@@ -15,10 +15,8 @@
     transform: scale(1.02)
 }
 
-
-
 .doctorCard>img{
-    height: 250px;
+    height: 300px;
     object-fit: cover;
     object-position: top;
 }

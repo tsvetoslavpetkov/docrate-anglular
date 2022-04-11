@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { MessageService, MessageType } from '../message.service';
 
@@ -12,7 +12,7 @@ import { MessageService, MessageType } from '../message.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   currentUser$ = this.authService.currentUser$;
   isLoggedIn$ = this.authService.isLoggedIn$;
-
+  token: string = '';
   message: string = '';
   isError: boolean = false;
 
@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.authService.accessToken$.subscribe((token) => (this.token = token));
+
     this.subscription = this.messageService.onNew$.subscribe((newMessage) => {
       this.message = newMessage?.text || '';
       this.isError = newMessage.type === MessageType.Error;
@@ -35,30 +37,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }, 3000);
       }
     });
+  }  
+
+  logoutHandler(): void {
+    this.authService.logout$().subscribe(() => {      
+    });
+    
+    this.messageService.notifyMessage({
+      text: 'Излязохте от профила си!',
+      type: MessageType.Success,
+    });
+    localStorage.clear();
+    this.authService.accessToken = '';
+    this.router.navigate([`/`]);
   }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
-  }
-
-  logoutHandler(): void {
-    this.authService.logout$().subscribe({
-      next: () => {
-        this.messageService.notifyMessage({
-          text: 'Излязохте от профила си!',
-          type: MessageType.Success})
-        this.router.navigate(['/home']);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('_id');
-        localStorage.removeItem('email');
-        
-      },
-      complete: () => {
-        console.log('logout stream completed');
-      },
-      error: () => {
-        //TODO
-      },
-    });
   }
 }

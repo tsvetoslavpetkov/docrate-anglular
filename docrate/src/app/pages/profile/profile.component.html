@@ -2,18 +2,16 @@
   Няма добавени лекари. 
 </div>
 <div *ngIf="!isLoading; else loadingIndicator" class="doctorListGrid">
+  
     <div *ngFor="let doctor of doctors">
         <div class="card doctorCard" style="width: 18rem;">
             <img class="card-img-top" src={{doctor.imageUrl}} alt={{doctor.firstName}}>
             <div class="card-body">
               <h5 class="card-title">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
-              <p class="card-text">{{doctor.specialityName}}</p> 
-              <a routerLink="/{{doctor._id}}"><button  class="btn btn-primary" >Детайли</button></a>             
+              <p class="card-text">{{doctor.specialityName}}</p>
+              
             </div>
-            
-            <div class="card-footer" style="color:rgb(155, 155, 155); display: flex; justify-content: space-around;">
-                <span><i style="margin-right: 10px;" class="fa-solid fa-thumbs-up"></i> {{getLikes(doctor._id)}} </span>| <span><i class="fa-solid fa-comment"></i></span>
-            </div>
+            <a routerLink="/{{doctor._id}}" class="btn btn-primary">Детайли</a>
           </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService, IDoctor } from 'src/app/doctor/doctor.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  doctors: IDoctor[] = [];
+
+  constructor(
+    private doctorService: DoctorService
+  ) { }
 
   ngOnInit(): void {
+
+    this.doctorService.getLastFive$().subscribe(doctors => {
+      this.doctors = doctors
+    })
+
   }
 
 }
