@@ -49,7 +49,7 @@ export class EditComponent implements OnInit {
               text: 'Не сте собственик на лекаря!',
               type: MessageType.Error,
             });
-            this.router.navigate([`/${doctor._id}`])
+            this.router.navigate([`/doctor/${doctor._id}`])
           }
 
         },
@@ -75,7 +75,7 @@ export class EditComponent implements OnInit {
           text: 'Успешно редактирахте лекаря!',
           type: MessageType.Success,
         });
-        this.router.navigate([`/${doctor._id}`]);
+        this.router.navigate([`/doctor/${doctor._id}`]);
       },
       complete: () => {},
       error: () => {

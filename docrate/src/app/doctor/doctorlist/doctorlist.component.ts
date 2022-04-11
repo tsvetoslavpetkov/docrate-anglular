@@ -23,7 +23,7 @@ export class DoctorlistComponent implements OnInit {
     this.likesService.getAllLikes$().subscribe(likes => this.likes = likes)
 
     this.isLoading = true;
-    this.doctorService.getDoctors$().subscribe(doctors => {
+    this.doctorService.getDoctors$().subscribe(doctors => {      
       this.isLoading=false;
       this.doctors = doctors;
     })

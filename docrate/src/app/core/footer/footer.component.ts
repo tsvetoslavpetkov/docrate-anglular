@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.doctorService.getLastFive$().subscribe(doctors => {
+    this.doctorService.getLastFive$().subscribe(doctors => {      
       this.doctors = doctors
     })
 

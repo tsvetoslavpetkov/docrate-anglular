@@ -15,8 +15,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: "",
-    component: HomeComponent,
+    path: '',
+    pathMatch: 'full',
+    component: HomeComponent
   },
   {
     path: 'home',
@@ -56,7 +57,7 @@ const routes: Routes = [
     component: CreateDoctorComponent
   },
   {
-    path: ':id',
+    path: 'doctor/:id',
     component: DoctorprofileComponent
   },  
   {

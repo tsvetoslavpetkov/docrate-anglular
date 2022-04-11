@@ -59,7 +59,7 @@
               Последно добавени
             </h6>
             <p *ngFor="let doctor of doctors">
-              <a routerLink="/{{doctor._id}}" class="text-reset">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</a>
+              <a routerLink="/doctor/{{doctor._id}}" class="text-reset">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</a>
             </p>
           </div>
           <!-- Grid column -->
