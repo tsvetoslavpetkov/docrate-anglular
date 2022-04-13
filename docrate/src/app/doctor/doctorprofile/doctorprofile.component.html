@@ -8,24 +8,54 @@
                 <div class="info">
                     <h5>{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
                     <hr>
-                    <p><i class="fa-solid fa-tag"></i>  Специалност: <b>{{doctor.specialityName}}</b></p>
+                    <p><i class="fa-solid fa-tag"></i> Специалност: <b>{{doctor.specialityName}}</b></p>
                     <p><i class="fa-solid fa-hashtag"></i> Код специалност: <b>{{doctor.specialityCode}}</b></p>
-                    <p><i class="fa-solid fa-house-medical"></i> Работи по здравна каса: <b>{{doctor.nzok ? "Да" : "Не"}}</b></p>
+                    <p><i class="fa-solid fa-house-medical"></i> Работи по здравна каса:
+                        <b>{{doctor.nzok ? "Да" : "Не"}}</b></p>
                     <p><i class="fa-solid fa-money-bill-1"></i> Цена на преглед: <b>{{doctor.price}} лв.</b></p>
                     <p><i class="fa-solid fa-location-dot"></i> Адрес: <b>{{doctor.address}}</b></p>
                     <hr>
                     <p><i class="fa-solid fa-thumbs-up"></i> Харесвания: <b>{{ likes }}</b>
-                        <button *ngIf="!isOwner && (isLoggedIn$ | async) && !hasLiked" (click)=likeHandle() style="margin-left: 100px" type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-thumbs-up"></i> Харесай</button> </p> 
+                        <button *ngIf="!isOwner && (isLoggedIn$ | async) && !hasLiked" (click)=likeHandle()
+                            style="margin-left: 100px" type="button" class="btn btn-outline-secondary"><i
+                                class="fa-solid fa-thumbs-up"></i> Харесай</button> </p>
                     <hr>
                     <div *ngIf="isOwner">
-                    <a routerLink="/edit/{{doctor._id}}"><button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-pencil"></i> Редактирай</button></a>
-                    <button style="margin-left: 10px;" type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Изтрий</button>
+                        <a routerLink="/edit/{{doctor._id}}"><button type="button" class="btn btn-outline-secondary"><i
+                                    class="fa-solid fa-pencil"></i> Редактирай</button></a>
+                        <button style="margin-left: 10px;" type="button" class="btn btn-outline-danger"><i
+                                class="fa-solid fa-trash"></i> Изтрий</button>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer text-center">
+
+            <p *ngIf="!(isLoggedIn$ | async)">
+                <a routerLink="/login" href="">Влез</a> или се <a routerLink="/register" href="">Регистрирай</a>, за да
+                можеш да четеш и пишеш коментари.
+            </p>
+
+            <div *ngIf="(isLoggedIn$ | async)" class="alert p-1">
+                <h6 *ngIf="comments.length == 0" class="m-3 text-secondary">Няма коментари.</h6>
+
+                <div *ngIf="comments.length != 0" >
+                    <div *ngFor="let comment of comments" class="alert alert-secondary p-1 mb-1">
+                        <h6 class="alert-heading p-0">{{comment.user}}</h6>
+                        <p class="px-2 py-0 mb-1">
+                            {{comment.comment.comment}}
+                        </p>
+                    </div>
+                </div>
+
+
+                <form #commentForm="ngForm"  (ngSubmit)=onSubmit()>                    
+                        <textarea class="form-control mb-2" ngModel name="comment" rows="2" required=true></textarea>
+                      
+                    <button class="btn btn-outline-secondary btn-sm mb-2" type="submit">Добави коментар</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -34,5 +64,5 @@
 </ng-template>
 
 <ng-template #errorIndicator>
- <app-resource-error></app-resource-error>
+    <app-resource-error></app-resource-error>
 </ng-template>

@@ -20,11 +20,13 @@ export class AuthService {
 
   public userId: string = '';
   public accessToken: string = '';
+  public email: string = '';
   private _currentUser = new BehaviorSubject<IUser>(undefined!);
 
   currentUser$ = this._currentUser.asObservable()
   isLoggedIn$ = this.currentUser$.pipe(map(user => !!user))
   userId$ = this.currentUser$.pipe(map(user => user._id))
+  userEmail$ = this.currentUser$.pipe(map(user => user.email))
   accessToken$ = this.currentUser$.pipe(map(user => user.accessToken))
 
   login$(userData: {email: string, password: string}): any {
@@ -58,6 +60,7 @@ export class AuthService {
   handleLogin (newUser : any){
     this._currentUser.next(newUser)    
     this.userId = newUser._id;  
+    this.email = newUser.email;  
     this.accessToken = newUser.accessToken
   }
 

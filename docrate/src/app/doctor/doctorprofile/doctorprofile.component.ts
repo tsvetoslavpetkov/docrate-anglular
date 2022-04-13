@@ -1,7 +1,9 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { CommentService } from '../comment.service';
 import { DoctorService, IDoctor } from '../doctor.service';
 import { LikesService } from '../likes.service';
 
@@ -11,21 +13,26 @@ import { LikesService } from '../likes.service';
   styleUrls: ['./doctorprofile.component.css'],
 })
 export class DoctorprofileComponent implements OnInit {
+
+  @ViewChild('commentForm') commentForm!: NgForm;
+
   doctor!: IDoctor;
   isLoading: boolean = false;
   isError: boolean = false;
   isOwner: boolean = false;
   isLoggedIn$ = this.authService.isLoggedIn$;
   hasLiked: boolean = false;
-  id: string = ''
-  likes: string = ''
+  id: string = '';
+  likes: string = '';
+  comments: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private doctorService: DoctorService,
     private titleService: Title,
     private likesService: LikesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private commentService: CommentService,
   ) {}
 
   public setTitle(newTitle: string) {
@@ -42,6 +49,9 @@ export class DoctorprofileComponent implements OnInit {
 
       this.likesService.getLikes$(id).subscribe(likes => this.likes = likes)
       this.likesService.hasLiked$(id, this.authService.userId).subscribe(hasLiked => this.hasLiked = !!hasLiked)
+      this.commentService.getAll$(id).subscribe(comments => this.comments = comments)
+
+      
 
       this.doctorService.getDoctor$(id).subscribe({
         next: doctor => {
@@ -62,6 +72,14 @@ export class DoctorprofileComponent implements OnInit {
     this.likesService.like$(this.doctor._id).subscribe(()=>{
       this.likesService.getLikes$(this.id).subscribe(likes => this.likes = likes)
       this.likesService.hasLiked$(this.id, this.authService.userId).subscribe(hasLiked => this.hasLiked = !!hasLiked)
+    })
+  }
+
+  onSubmit(): void {    
+    this.commentService.comment$(this.doctor._id, this.authService.email, this.commentForm.value).subscribe(()=>{
+      this.commentService.getAll$(this.doctor._id).subscribe(comments => this.comments = comments)
+      console.log(this.comments);
+
     })
   }
 
