@@ -1,8 +1,9 @@
 .card-body {
     background-image: url('/assets/contacts-animation.svg');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: 450px 0;
     height: 400px;
+    background-size: 500px;
 }
 
 a {

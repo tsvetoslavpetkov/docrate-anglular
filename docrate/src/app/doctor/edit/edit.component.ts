@@ -39,9 +39,7 @@ export class EditComponent implements OnInit {
       this.id = params['id'];
 
       this.doctorService.getDoctor$(this.id).subscribe({
-        next: (doctor) => {
-          console.log(doctor);
-          
+        next: (doctor) => {          
           this.doctor = doctor;
 
           if(this.doctor._ownerId != this.authService.userId){

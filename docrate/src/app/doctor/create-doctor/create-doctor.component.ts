@@ -41,7 +41,7 @@ export class CreateDoctorComponent implements OnInit {
           text: 'Успешно добавихте лекар!',
           type: MessageType.Success
         })
-        this.router.navigate([`/${doctor._id}`]);
+        this.router.navigate([`/doctor/${doctor._id}`]);
       },
       complete: () => {
       },

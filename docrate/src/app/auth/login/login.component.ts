@@ -38,11 +38,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
           type: MessageType.Success
         })
         this.router.navigate(['/home']);
-      },
-      complete: () => {
-      },
-      error: () => {
-       //TODO
       }
     })
   }

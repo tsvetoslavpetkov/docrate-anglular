@@ -14,14 +14,10 @@
 }
 
 .main-card-container {
-    width: 900px;
+    padding-block: 100px;
+    width: 60%;
     max-height: 100%;
     flex-basis: 100%;
     margin: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
 }
 
-.card {
-    box-shadow: 3px 3px 5px black;
-}

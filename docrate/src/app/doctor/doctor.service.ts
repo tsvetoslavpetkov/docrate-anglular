@@ -35,6 +35,10 @@ export class DoctorService {
     return this.httpClient.put<IDoctor>('https://practice-server-softuni.herokuapp.com/data/doctors/' + id, doctorData );
   }
 
+  delete$(id:string): Observable<IDoctor> {
+    return this.httpClient.delete<IDoctor>('https://practice-server-softuni.herokuapp.com/data/doctors/' + id);
+  }
+
   getLastFive$(): Observable<IDoctor[]> {
     return this.httpClient.get<IDoctor[]>('https://practice-server-softuni.herokuapp.com/data/doctors?sortBy=_createdOn%20desc&pageSize=5');
   }
@@ -44,6 +48,6 @@ export class DoctorService {
   }
 
   getMyDoctors$(id: string): Observable<IDoctor[]> {
-    return this.httpClient.get<IDoctor[]>('https://practice-server-softuni.herokuapp.com/data/doctors?where=_ownerId%3D%22$' +id + '%22');
+    return this.httpClient.get<IDoctor[]>('https://practice-server-softuni.herokuapp.com/data/doctors?where=_ownerId%3D%22' +id + '%22');
   }
 }

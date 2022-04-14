@@ -83,10 +83,10 @@
             </div>
             <div class="form-row">
                 <div class="col-md-8 mb-3">
-                    <label for="price">Второ име</label>
+                    <label for="price">Цена на прегледа</label>
                     <input
                      name="price"
-                     type="text"
+                     type="number"
                      class="form-control"
                      placeholder="40лв."
                      required
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div style="width: 100%;">
-            <button  class="btn btn-primary" style="position: relative; left:50%; transform: translateX(-50%)"  type="submit">Добави лекар</button>
+            <button  class="btn btn-primary" [disabled]="createForm.invalid" style="position: relative; left:50%; transform: translateX(-50%)"  type="submit">Добави лекар</button>
             </div>
         </form>
 

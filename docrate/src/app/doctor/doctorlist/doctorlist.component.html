@@ -1,24 +1,25 @@
 <div *ngIf="doctors.length == 0 && !isLoading" class="alert alert-secondary text-center" role="alert">
-  Няма добавени лекари. 
+  Няма добавени лекари.
 </div>
 <div *ngIf="!isLoading; else loadingIndicator" class="doctorListGrid">
-    <div *ngFor="let doctor of doctors">
-        <div class="card doctorCard" style="width: 18rem;">
-            <img class="card-img-top" src={{doctor.imageUrl}} alt={{doctor.firstName}}>
-            <div class="card-body">
-              <h5 class="card-title">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
-              <p class="card-text">{{doctor.specialityName}}</p> 
-              <a routerLink="/doctor/{{doctor._id}}"><button  class="btn btn-primary" >Детайли</button></a>             
-            </div>
-            
-            <div class="card-footer" style="color:rgb(155, 155, 155); display: flex; justify-content: space-around;">
-                <span><i style="margin-right: 10px;" class="fa-solid fa-thumbs-up"></i> {{getLikes(doctor._id)}} </span>| <span><i class="fa-solid fa-comment" style="margin-right: 10px;"></i> {{getComments(doctor._id)}}</span>
-            </div>
-          </div>
+  <div *ngFor="let doctor of doctors">
+    <div class="card doctorCard">
+      
+      <img class="card-img-top" src={{doctor.imageUrl}} alt={{doctor.firstName}}>
+      <div class="card-body">
+        <h5 class="card-title">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
+        <p class="card-text">{{doctor.specialityName}}</p>
+        <a routerLink="/doctor/{{doctor._id}}"><button class="btn btn-primary">Детайли</button></a>
+      </div>
+
+      <div class="card-footer" style="color:rgb(155, 155, 155); display: flex; justify-content: space-around;">
+        <span><i style="margin-right: 10px;" class="fa-solid fa-thumbs-up"></i> {{getLikes(doctor._id)}} </span>|
+        <span><i class="fa-solid fa-comment" style="margin-right: 10px;"></i> {{getComments(doctor._id)}}</span>
+      </div>
     </div>
+  </div>
 </div>
 
 <ng-template #loadingIndicator>
   <app-loading></app-loading>
 </ng-template>
-

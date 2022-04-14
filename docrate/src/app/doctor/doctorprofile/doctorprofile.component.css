@@ -12,4 +12,6 @@
     max-width: 350px;
     border:1px solid gainsboro;
     border-radius: 3px;
+    object-fit: cover;
 }
+

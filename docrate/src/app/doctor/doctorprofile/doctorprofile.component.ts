@@ -1,8 +1,9 @@
-import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MessageService, MessageType } from 'src/app/core/message.service';
 import { CommentService } from '../comment.service';
 import { DoctorService, IDoctor } from '../doctor.service';
 import { LikesService } from '../likes.service';
@@ -33,6 +34,8 @@ export class DoctorprofileComponent implements OnInit {
     private likesService: LikesService,
     private authService: AuthService,
     private commentService: CommentService,
+    private messageService: MessageService,
+    private router: Router,
   ) {}
 
   public setTitle(newTitle: string) {
@@ -49,9 +52,7 @@ export class DoctorprofileComponent implements OnInit {
 
       this.likesService.getLikes$(id).subscribe(likes => this.likes = likes)
       this.likesService.hasLiked$(id, this.authService.userId).subscribe(hasLiked => this.hasLiked = !!hasLiked)
-      this.commentService.getAll$(id).subscribe(comments => this.comments = comments)
-
-      
+      this.commentService.getAll$(id).subscribe(comments => this.comments = comments)      
 
       this.doctorService.getDoctor$(id).subscribe({
         next: doctor => {
@@ -75,11 +76,25 @@ export class DoctorprofileComponent implements OnInit {
     })
   }
 
+  deleteHandle(): void {
+    this.doctorService.delete$(this.doctor._id).subscribe({     
+      
+        next: () => {
+          this.messageService.notifyMessage({
+            text: 'Изтрихте пациента успешно!',
+            type: MessageType.Success
+          })
+          this.router.navigate(['/home']);
+        }
+      
+              
+    })
+  }
+
   onSubmit(): void {    
     this.commentService.comment$(this.doctor._id, this.authService.email, this.commentForm.value).subscribe(()=>{
+      this.commentForm.reset()
       this.commentService.getAll$(this.doctor._id).subscribe(comments => this.comments = comments)
-      console.log(this.comments);
-
     })
   }
 

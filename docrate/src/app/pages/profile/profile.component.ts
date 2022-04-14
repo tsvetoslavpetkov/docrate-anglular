@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
     this.isLoading = true;
     this.customerService.getMyDoctors$(this.authService.userId).subscribe(doctors => {
+      
       this.isLoading=false;
       this.doctors = doctors;
     })

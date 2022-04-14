@@ -20,16 +20,16 @@
                             style="margin-left: 100px" type="button" class="btn btn-outline-secondary"><i
                                 class="fa-solid fa-thumbs-up"></i> Харесай</button> </p>
                     <hr>
-                    <div *ngIf="isOwner">
+                    <div *ngIf="isOwner && (isLoggedIn$ | async)">
                         <a routerLink="/edit/{{doctor._id}}"><button type="button" class="btn btn-outline-secondary"><i
                                     class="fa-solid fa-pencil"></i> Редактирай</button></a>
-                        <button style="margin-left: 10px;" type="button" class="btn btn-outline-danger"><i
+                        <button style="margin-left: 10px;" type="button" (click)=deleteHandle() class="btn btn-outline-danger"><i
                                 class="fa-solid fa-trash"></i> Изтрий</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card-footer text-center">
+        <div class="card-footer text-center p-1 pb-0">
 
             <p *ngIf="!(isLoggedIn$ | async)">
                 <a routerLink="/login" href="">Влез</a> или се <a routerLink="/register" href="">Регистрирай</a>, за да
@@ -40,19 +40,23 @@
                 <h6 *ngIf="comments.length == 0" class="m-3 text-secondary">Няма коментари.</h6>
 
                 <div *ngIf="comments.length != 0" >
-                    <div *ngFor="let comment of comments" class="alert alert-secondary p-1 mb-1">
-                        <h6 class="alert-heading p-0">{{comment.user}}</h6>
+                    <div *ngFor="let comment of comments" class="alert alert-secondary p-1 mb-2" style="text-align: left;"> 
+                        
                         <p class="px-2 py-0 mb-1">
+                            <span><b>@{{comment.user.split('@')[0]}}</b>: </span>
                             {{comment.comment.comment}}
                         </p>
                     </div>
+                    <hr>
                 </div>
 
 
                 <form #commentForm="ngForm"  (ngSubmit)=onSubmit()>                    
-                        <textarea class="form-control mb-2" ngModel name="comment" rows="2" required=true></textarea>
+                        <textarea class="form-control mb-3"  ngModel #comment="ngModel" name="comment" rows="2" required="true"
+                        [ngClass]="{'is-valid': comment.touched && comment.valid, 'is-invalid': comment.touched && comment.invalid}">
+                    </textarea>
                       
-                    <button class="btn btn-outline-secondary btn-sm mb-2" type="submit">Добави коментар</button>
+                    <button class="btn btn-outline-secondary" [disabled]="comment.invalid" type="submit">Добави коментар</button>
                 </form>
             </div>
         </div>

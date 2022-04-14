@@ -1,8 +1,11 @@
 .doctorListGrid{
+    margin:auto;
     display: grid;
     max-width: 100%;
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-content: center;
 }
 
 .doctorCard{

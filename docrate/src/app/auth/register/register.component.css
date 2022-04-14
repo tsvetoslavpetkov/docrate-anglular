@@ -1,7 +1,7 @@
 .card-body {
     background-image: url('/assets/register-animation.svg');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: 200px 0;
     height: 400px;
 }
 

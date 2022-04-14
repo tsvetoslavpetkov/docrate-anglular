@@ -1,4 +1,4 @@
-<div class="card mb-4 box-shadow">
+<div class="card mb-4 box-shadow" style="width: 700px;">
     <div class="card-header" style="text-align: center;">
         <h6 class="my-1">Вход</h6>
     </div>
@@ -6,25 +6,23 @@
         <div style="padding: 1rem; width: 60%;">
             <form #loginForm="ngForm" (ngSubmit)=onSubmit()>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                    <label for="email">Имейл</label>
                     <input
-                        type="email" class="form-control" name="email" aria-describedby="emailHelp"
-                        placeholder="Enter email" ngModel #myfieldname="ngModel" required="true"
-                        [ngClass]="{'is-valid': myfieldname.touched && myfieldname.valid, 'is-invalid': myfieldname.touched && myfieldname.invalid}"
-                        >
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+                        type="email" class="form-control mb-3" name="email"
+                        placeholder="peter@abv.bg" ngModel #email="ngModel" required="true"
+                        [ngClass]="{'is-valid': email.touched && email.valid, 'is-invalid': email.touched && email.invalid}">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control"
-                     placeholder="Password" ngModel #myfieldname1="ngModel" required="true"
-                     [ngClass]="{'is-valid': myfieldname1.touched && myfieldname1.valid, 'is-invalid': myfieldname1.touched && myfieldname1.invalid}"
+                    <label for="password">Парола</label>
+                    <input type="password" name="password" class="form-control mb-3"
+                     placeholder="Password" ngModel #password="ngModel" required="true"
+                     [ngClass]="{'is-valid': password.touched && password.valid, 'is-invalid': password.touched && password.invalid}"
                      >
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary px-5 mb-3">Вход</button>
             </form>
+            <p>Още нямате профил ? <a routerLink="/register" href="/register">Регистрирай се</a> !</p>
         </div>
     </div>
     <div class="card-footer" style="text-align: center;">
