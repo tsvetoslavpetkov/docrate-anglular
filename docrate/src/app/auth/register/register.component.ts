@@ -11,7 +11,8 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  @ViewChild('registerForm') registerForm!: NgForm;
+  @ViewChild('registerForm') registerForm!: NgForm;  
+  repeat: boolean = true;
 
   public constructor(
     private titleService: Title,
@@ -28,8 +29,18 @@ export class RegisterComponent implements OnInit {
 
   ngAfterViewInit(): void {
   }
+
+  checkSame(): void {
+    if(this.registerForm.value.password == this.registerForm.value.passwordRepeat){
+      this.repeat = true;
+    }else{
+      this.repeat = false;
+    }
+  }
   
   onSubmit(): void {    
+
+    if(this.registerForm.value.password == this.registerForm.value.passwordRepeat){
 
     let userdata = {
       email: this.registerForm.value.email,
@@ -47,4 +58,10 @@ export class RegisterComponent implements OnInit {
       }
     })
   }
+
+  else{
+    this.repeat = false;
+  }
+
+}
 }

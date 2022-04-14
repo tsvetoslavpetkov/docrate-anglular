@@ -1,3 +1,5 @@
+
+
 <div *ngIf="doctors.length == 0 && !isLoading" class="alert alert-secondary text-center" role="alert">
   Няма добавени лекари. 
 </div>
@@ -8,8 +10,7 @@
             <img class="card-img-top" src={{doctor.imageUrl}} alt={{doctor.firstName}}>
             <div class="card-body">
               <h5 class="card-title">{{doctor.title}} {{doctor.firstName}} {{doctor.secondName}}</h5>
-              <p class="card-text">{{doctor.specialityName}}</p>
-              
+              <p class="card-text">{{doctor.specialityName}}</p>              
             </div>
             <a routerLink="/doctor/{{doctor._id}}" class="btn btn-primary">Детайли</a>
           </div>

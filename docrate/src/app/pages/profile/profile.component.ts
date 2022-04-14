@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/auth.service';
 import { IDoctor, DoctorService } from 'src/app/doctor/doctor.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +18,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private customerService: DoctorService,
     private authService: AuthService,
-    private titleService: Title
-
+    private titleService: Title,
+    private HttpClient: HttpClient
   ) { }
 
   public setTitle(newTitle: string) {

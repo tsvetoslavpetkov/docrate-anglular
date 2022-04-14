@@ -9,23 +9,57 @@
                     <label for="email">Имейл</label>
                     <input
                         type="email" class="form-control mb-3" name="email"
-                        placeholder="peter@abv.bg" ngModel #email="ngModel" required="true"
+                        placeholder="peter@abv.bg" ngModel #email="ngModel"
+                        minlength="10"
+                        email
+                        maxlength="50"
+                        required="true"
                         [ngClass]="{'is-valid': email.touched && email.valid, 'is-invalid': email.touched && email.invalid}"
                         >
+                        <ng-container *ngIf="email.touched && email.invalid">
+                            <div *ngIf="email.errors?.['required']" class="invalid">
+                                Моля въведете имейл.
+                            </div>
+                            <div *ngIf="email.errors?.['minlength']" class="invalid">
+                                Имейлът трябва да е повече от 10 символа.
+                            </div>
+                            <div *ngIf="email.errors?.['email']" class="invalid">
+                                Некоректен имейл формат!
+                            </div>
+                            <div *ngIf="email.errors?.['maxlength']" class="invalid">
+                                Имейлът трябва да е по-малко от 50 символа.
+                            </div>
+                        </ng-container>
                 </div>
                 <div class="form-group">
                     <label for="password">Парола</label>
                     <input type="password" name="password" class="form-control mb-3"
-                     placeholder="******" ngModel #password="ngModel" required="true"
+                     placeholder="******" ngModel #password="ngModel" required="true" minlength="6" maxlength="20"
                      [ngClass]="{'is-valid': password.touched && password.valid, 'is-invalid': password.touched && password.invalid}"
                      >
+                     <ng-container *ngIf="password.touched && password.invalid">
+                        <div *ngIf="password.errors?.['required']" class="invalid">
+                            Моля въведете парола.
+                        </div>
+                        <div *ngIf="password.errors?.['minlength']" class="invalid">
+                            Паролата трябва да е повече от 6 символа.
+                        </div>
+                        <div *ngIf="password.errors?.['maxlength']" class="invalid">
+                            Паролата трябва да е по-малко от 20 символа.
+                        </div>
+                    </ng-container>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Повторете паролата</label>
                     <input type="password" name="passwordRepeat" class="form-control mb-3"
-                     placeholder="******" ngModel #passwordRepeat="ngModel" required="true"
-                     [ngClass]="{'is-valid': passwordRepeat.touched && passwordRepeat.valid, 'is-invalid': passwordRepeat.touched && passwordRepeat.invalid}"
+                     placeholder="******" ngModel #passwordRepeat="ngModel" required="true" (change)="checkSame()"
+                     [ngClass]="{'is-valid': passwordRepeat.touched && passwordRepeat.valid && repeat, 'is-invalid': (passwordRepeat.touched && passwordRepeat.invalid) || !repeat}"
                      >
+                     <ng-container *ngIf="!repeat">
+                        <div *ngIf="!repeat" class="invalid">
+                            Паролите не съвпадат!
+                        </div>
+                    </ng-container>
                 </div>
                 
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary px-3 mb-3">Регистрация</button>

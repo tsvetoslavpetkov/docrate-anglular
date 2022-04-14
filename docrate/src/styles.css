@@ -3,3 +3,11 @@
     margin: auto;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.219)
 }
+
+
+div.invalid{
+    color: rgb(204, 0, 0);
+    font-size: 14px;
+    padding: 3px;
+    margin-top: -15px;
+}

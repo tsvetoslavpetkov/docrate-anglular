@@ -7,25 +7,55 @@
             <form #loginForm="ngForm" (ngSubmit)=onSubmit()>
                 <div class="form-group">
                     <label for="email">Имейл</label>
-                    <input
-                        type="email" class="form-control mb-3" name="email"
-                        placeholder="peter@abv.bg" ngModel #email="ngModel" required="true"
-                        [ngClass]="{'is-valid': email.touched && email.valid, 'is-invalid': email.touched && email.invalid}">
+                    <input type="email" class="form-control mb-3" name="email" placeholder="peter@abv.bg" ngModel
+                        #email="ngModel" required
+                        [ngClass]="{'is-valid': email.touched && email.valid, 'is-invalid': email.touched && email.invalid}"
+                        minlength="10"
+                        email
+                        maxlength="50">
+
+                    <ng-container *ngIf="email.touched && email.invalid">
+                        <div *ngIf="email.errors?.['required']" class="invalid">
+                            Моля въведете имейл.
+                        </div>
+                        <div *ngIf="email.errors?.['minlength']" class="invalid">
+                            Имейлът трябва да е повече от 10 символа.
+                        </div>
+                        <div *ngIf="email.errors?.['email']" class="invalid">
+                            Некоректен имейл формат!
+                        </div>
+                        <div *ngIf="email.errors?.['maxlength']" class="invalid">
+                            Имейлът трябва да е по-малко от 50 символа.
+                        </div>
+                    </ng-container>
+
                 </div>
                 <div class="form-group">
                     <label for="password">Парола</label>
-                    <input type="password" name="password" class="form-control mb-3"
-                     placeholder="Password" ngModel #password="ngModel" required="true"
-                     [ngClass]="{'is-valid': password.touched && password.valid, 'is-invalid': password.touched && password.invalid}"
-                     >
-                </div>
+                    <input type="password" name="password" class="form-control mb-3" placeholder="Password" ngModel
+                        #password="ngModel" required="true" minlength="6" maxlength="20"
+                        [ngClass]="{'is-valid': password.touched && password.valid, 'is-invalid': password.touched && password.invalid}">
                 
+                        <ng-container *ngIf="password.touched && password.invalid">
+                            <div *ngIf="password.errors?.['required']" class="invalid">
+                                Моля въведете парола.
+                            </div>
+                            <div *ngIf="password.errors?.['minlength']" class="invalid">
+                                Паролата трябва да е повече от 6 символа.
+                            </div>
+                            <div *ngIf="password.errors?.['maxlength']" class="invalid">
+                                Паролата трябва да е по-малко от 20 символа.
+                            </div>
+                        </ng-container>
+
+                    </div>
+
                 <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary px-5 mb-3">Вход</button>
             </form>
             <p>Още нямате профил ? <a routerLink="/register" href="/register">Регистрирай се</a> !</p>
         </div>
     </div>
     <div class="card-footer" style="text-align: center;">
-        
+
     </div>
 </div>
