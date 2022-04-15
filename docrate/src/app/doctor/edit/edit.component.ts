@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fade } from 'src/app/animations';
 import { AuthService } from 'src/app/auth.service';
 import { MessageService, MessageType } from 'src/app/core/message.service';
 import { DoctorService, IDoctor } from '../doctor.service';
@@ -9,6 +10,8 @@ import { DoctorService, IDoctor } from '../doctor.service';
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css'],
+  animations: [fade]
+
 })
 export class EditComponent implements OnInit {
   @ViewChild('editForm') editForm!: NgForm;

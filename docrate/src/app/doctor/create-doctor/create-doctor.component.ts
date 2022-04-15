@@ -2,13 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { fade } from 'src/app/animations';
 import { MessageService, MessageType } from 'src/app/core/message.service';
 import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-create-doctor',
   templateUrl: './create-doctor.component.html',
-  styleUrls: ['./create-doctor.component.css']
+  styleUrls: ['./create-doctor.component.css'],
+  animations: [fade]
+
 })
 export class CreateDoctorComponent implements OnInit {
 

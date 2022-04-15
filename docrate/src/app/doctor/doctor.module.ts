@@ -8,6 +8,7 @@ import { CreateDoctorComponent } from './create-doctor/create-doctor.component';
 import { Title } from '@angular/platform-browser';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   exports: [
     DoctorlistComponent,

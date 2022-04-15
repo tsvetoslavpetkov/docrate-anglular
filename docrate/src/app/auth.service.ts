@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, find } from 'rxjs/operators';
 
 export interface IUser {
   email: string;
@@ -44,6 +44,15 @@ export class AuthService {
   logout$(): Observable<any> {
     return this.httpClient.get('https://practice-server-softuni.herokuapp.com/users/logout')
   }
+
+  setAvatar$(imageUrl: string, userId: string): Observable<any> {
+    return this.httpClient.post('https://practice-server-softuni.herokuapp.com/data/avatars', {userId, imageUrl})
+  }
+
+  getAvatars$(): Observable<any> {
+    return this.httpClient.get('https://practice-server-softuni.herokuapp.com/data/avatars')
+  }
+  
 
   authenticate(){
     if(localStorage.getItem('accessToken')){

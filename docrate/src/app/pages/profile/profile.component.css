@@ -1,8 +1,8 @@
 .doctorListGrid{
     display: grid;
     max-width: 100%;
-    gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .doctorCard{
@@ -16,11 +16,21 @@
 }
 
 .doctorCard>img{
-    height: 300px;
+    height: 250px;
     object-fit: cover;
     object-position: top;
 }
 
 .error-doctor{
     color: red;
+}
+
+.avatar{
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin: auto;
+    border: 2px solid rgb(255, 255, 255);
+    box-shadow: 0 2px 4px gray;
 }

@@ -1,7 +1,7 @@
 <div *ngIf="doctors.length == 0 && !isLoading" class="alert alert-secondary text-center" role="alert">
   Няма добавени лекари.
 </div>
-<div *ngIf="!isLoading; else loadingIndicator" class="doctorListGrid">
+<div @fadeIn *ngIf="!isLoading; else loadingIndicator" class="doctorListGrid">
   <div *ngFor="let doctor of doctors">
     <div class="card doctorCard">
       

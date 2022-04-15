@@ -12,16 +12,14 @@ import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DoctorModule } from './doctor/doctor.module';
-import { CreateComponent } from './pages/create/create.component';
-import { EditComponent } from './pages/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SharedModule } from './shared/shared.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent, CreateComponent, EditComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NotFoundComponent, ContactComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,7 +29,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     DoctorModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     Title,

@@ -37,3 +37,11 @@ nav>div.notification{
     top: 100px;
     right: 100px;
 }
+
+.avatar{
+	width: 30px;
+	height: 30px;
+	border-radius: 50px;
+	margin-top: 5px;
+	object-fit: cover;
+border: 1px solid gray;}

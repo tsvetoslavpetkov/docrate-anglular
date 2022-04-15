@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fade } from 'src/app/animations';
 import { AuthService } from 'src/app/auth.service';
 import { MessageService, MessageType } from 'src/app/core/message.service';
 import { CommentService } from '../comment.service';
@@ -12,6 +13,8 @@ import { LikesService } from '../likes.service';
   selector: 'app-doctorprofile',
   templateUrl: './doctorprofile.component.html',
   styleUrls: ['./doctorprofile.component.css'],
+  animations: [fade]
+
 })
 export class DoctorprofileComponent implements OnInit {
 

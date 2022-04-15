@@ -22,7 +22,8 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/create" href="#">Добави лекар</a>
         </li>
-        <li class="nav-item">
+        <li style="display: flex; vertical-align: middle;" class="nav-item">
+          <img class="avatar" src="{{avatarUrl}}" />
           <a class="nav-link" aria-current="page" routerLink="/profile" href="#">
             {{(currentUser$ | async)!.email}}</a>
         </li>

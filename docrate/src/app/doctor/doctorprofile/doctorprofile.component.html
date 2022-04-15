@@ -1,5 +1,5 @@
 <div *ngIf="!isError; else errorIndicator">
-    <div *ngIf="!isLoading; else loadingIndicator" class="card">
+    <div @fadeIn *ngIf="!isLoading; else loadingIndicator" class="card">
         <div class="card-header"><a routerLink="/"><button type="button" class="btn btn-outline-secondary btn-sm"><i
                         class="fa-solid fa-circle-chevron-left"></i> Назад</button></a></div>
         <div class="card-body">
@@ -15,8 +15,8 @@
                     <p><i class="fa-solid fa-money-bill-1"></i> Цена на преглед: <b>{{doctor.price}} лв.</b></p>
                     <p><i class="fa-solid fa-location-dot"></i> Адрес: <b>{{doctor.address}}</b></p>
                     <hr>
-                    <p><i class="fa-solid fa-thumbs-up"></i> Харесвания: <b>{{ likes }}</b>
-                        <button *ngIf="!isOwner && (isLoggedIn$ | async) && !hasLiked" (click)=likeHandle()
+                    <p @fadeIn><i class="fa-solid fa-thumbs-up"></i> Харесвания: <b>{{ likes }}</b>
+                        <button @fadeIn *ngIf="!isOwner && (isLoggedIn$ | async) && !hasLiked" (click)=likeHandle()
                             style="margin-left: 100px" type="button" class="btn btn-outline-secondary"><i
                                 class="fa-solid fa-thumbs-up"></i> Харесай</button> </p>
                     <hr>
@@ -37,9 +37,11 @@
             </p>
 
             <div *ngIf="(isLoggedIn$ | async)" class="alert p-1">
-                <h6 *ngIf="comments.length == 0" class="m-3 text-secondary">Няма коментари.</h6>
+                <h6 *ngIf="comments.length == 0" class="m-5 text-secondary">Няма коментари.</h6>
 
                 <div *ngIf="comments.length != 0" >
+                    <h6>Коментари</h6>
+                    <hr>
                     <div *ngFor="let comment of comments" class="alert alert-secondary p-1 mb-2" style="text-align: left;"> 
                         
                         <p class="px-2 py-0 mb-1">
@@ -52,7 +54,7 @@
 
 
                 <form #commentForm="ngForm"  (ngSubmit)=onSubmit()>                    
-                        <textarea class="form-control mb-3"  ngModel #comment="ngModel" name="comment" rows="2" required="true"
+                        <textarea class="form-control mb-3"  ngModel #comment="ngModel" placeholder="Напиши коментар..." name="comment" rows="2" required="true"
                         [ngClass]="{'is-valid': comment.touched && comment.valid, 'is-invalid': comment.touched && comment.invalid}">
                     </textarea>
                       

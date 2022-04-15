@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { fade } from 'src/app/animations';
 import { CommentService } from '../comment.service';
 import { DoctorService, IDoctor } from '../doctor.service';
 import { LikesService } from '../likes.service';
@@ -6,7 +7,8 @@ import { LikesService } from '../likes.service';
 @Component({
   selector: 'app-doctorlist',
   templateUrl: './doctorlist.component.html',
-  styleUrls: ['./doctorlist.component.css']
+  styleUrls: ['./doctorlist.component.css'],
+  animations: [fade]
 })
 export class DoctorlistComponent implements OnInit {
 
